@@ -137,13 +137,6 @@ app.get('/api/login/:user/:pass', function (req, res) {
     });
   });
 });
-/*
-var sql    = 'SELECT * FROM users WHERE id = ' + connection.escape(userId);
-connection.query(sql, function (error, results, fields) {
-  if (error) throw error;
-  // ...
-});
-*/
 
 
 app.listen(3000, function () {
