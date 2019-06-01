@@ -60,9 +60,12 @@ app.post('/api/register', function (req, res) {
   var checkUsername = "SELECT * FROM Utenti WHERE Username = " + con.escape(user);
 
   con.connect(function (err) {
-    if (err) throw err;
+
+    if (err) res.send({ state: 'ko' });
+
     con.query(checkUsername, function (err, result, fields) {
-      if (err) throw err; //res.send({ state: 'ko' });;
+      if (err) res.send({ state: 'ko' });
+
       if (!result[0]) {
 
         var sql = "INSERT INTO Utenti (Name, Surname, Address, City, State, PostalCode, Email, Username, Password, Salt) VALUES ('" + name + "','" + surname + "','" + address + "','" +
@@ -71,7 +74,7 @@ app.post('/api/register', function (req, res) {
         con.connect(function (err) {
           if (err) throw err;
           con.query(sql, function (err, result, fields) {
-            if (err) throw err; //res.send({ state: 'ko' });;
+            if (err) res.send({ state: 'ko' });
             res.set({
               'Content-Type': 'application/json',
               'X-Requested-With': 'XMLHttpRequest',
