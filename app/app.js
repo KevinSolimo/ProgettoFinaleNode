@@ -21,6 +21,9 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 app.use(cors());
 
+//AngularProject
+app.use(express.static(__dirname + '/FrontEnd'));
+
 //HTTPS Server
 const server = https.createServer({
     key: fs.readFileSync(__dirname + '/server.key'),
